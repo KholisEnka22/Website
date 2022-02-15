@@ -31,7 +31,7 @@
                         <th scope="row">{{++$no}}</th>
                         <td>{{$m->nama}}</td>
                         <td>{{$m->alamat}}</td>
-                        <td>{{$m->ttl}}</td>
+                        <td>{{$m->tmpt}}, {{$m->tgl}}</td>
                         <td>{{$m->tingkat->nama_tgkt}}</td>
                         <td>
                             <a href="" class="btn btn-warning">Detail</a>

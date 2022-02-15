@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKontiSiswasTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateKontiSiswasTable extends Migration
      */
     public function up()
     {
-        Schema::create('konti_siswas', function (Blueprint $table) {
-            $table->string('id_siswa');
-            $table->string('id_konti');
-            $table->string('id_tingkat');
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->enum('role', ['admin', 'spr_admin']);
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateKontiSiswasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('konti_siswas');
+        Schema::dropIfExists('admins');
     }
 }

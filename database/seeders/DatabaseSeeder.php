@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kontingen;
 use Illuminate\Database\Seeder;
+use App\Models\Tingkat;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +17,74 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        User::create(
+            [
+                'name'     => 'Administrator',
+                'email'    => 'admin@gmail.com',
+                'role'    => 'admin',
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        User::create(
+            [
+                'name'     => 'SuperAdministrator',
+                'email'    => 'spr.admin@gmail.com',
+                'role'    => 'spr_admin',
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        Tingkat::create(
+            [
+                'nama_tgkt' => 'Badge',
+            ]
+        );
+        Tingkat::create(
+            [
+                'nama_tgkt' => 'Putih',
+            ]
+        );
+        Tingkat::create(
+            [
+                'nama_tgkt' => 'Kuning',
+            ]
+        );
+        Tingkat::create(
+            [
+                'nama_tgkt' => 'Merah',
+            ]
+        );
+        Tingkat::create(
+            [
+                'nama_tgkt' => 'Biru',
+            ]
+        );
+        Kontingen::create(
+            [
+                'nama_kon' => 'PAC.Sukorejo',
+            ]
+        );
+        Kontingen::create(
+            [
+                'nama_kon' => 'PAC.Purwosari',
+            ]
+        );
+        Kontingen::create(
+            [
+                'nama_kon' => 'UKM.Yudharta',
+            ]
+        );
+        Kontingen::create(
+            [
+                'nama_kon' => 'PP.Ngalah',
+            ]
+        );
+        Kontingen::create(
+            [
+                'nama_kon' => 'SMK DATA',
+            ]
+        );
     }
 }

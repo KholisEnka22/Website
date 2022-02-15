@@ -17,9 +17,16 @@ class CreateMuridsTable extends Migration
             $table->id();
             $table->integer('kon_id');
             $table->integer('ting_id');
+            $table->integer('user_id');
+            $table->string('mrd_id');
+            $table->string('nik');
+            $table->string('jns_klmin');
+            $table->string('email');
+            $table->string('foto');
             $table->string('nama');
             $table->string('alamat');
-            $table->string('ttl');
+            $table->string('tmpt');
+            $table->string('tgl');
             $table->timestamps();
         });
     }

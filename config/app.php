@@ -165,6 +165,9 @@ return [
         /*
          * Package Service Providers...
          */
+        Brian2694\Toastr\ToastrServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,6 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Toastr' => \Yoeunes\Toastr\Facades\Toastr::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 

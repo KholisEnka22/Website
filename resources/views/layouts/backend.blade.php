@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>Satria Agung | {{$page}}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -21,7 +21,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('AdminLTE')}}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/dist\air-datepicker\dist\css\datepicker.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
+
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -37,38 +44,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
                 <!-- Right navbar links -->
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            <i class="fas fa-user-circle"> LogOut</i>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link" data-toggle="dropdown">
+                            <img src="{{asset('AdminLTE')}}/dist/img/avatar2.png" class="img-circle img-sm"
+                                alt="Avatar">
+                            <span>{{ Auth::user()->name }}</span>
+                            <i class="fas fa-angle-down"></i>
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                            <li class="dropdown-item">
+                                <a href="{{route('account.profil')}}" style="color: black;">
+                                    <i class="far fa-user fa-fw"></i>
+                                    <span> My Profile</span>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="{{route('logout')}}" style="color: black;">
+                                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                                    <span> LogOut</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </ul>
@@ -78,33 +76,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{asset('AdminLTE')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Admin Perguruan</span>
+            <a class="brand-link">
+                <img src="{{asset('AdminLTE')}}/dist/img/satria0.png" alt="Satria Agung"
+                    class="img-circle elevation-3 img-size-32">
+                <span class="brand-text font-weight-light">PN Satria Agung</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{asset('AdminLTE')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                    </div>
-                </div>
+
+                @if(auth()->user()->role =='admin')
 
                 <!-- Sidebar Menu -->
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Administrator</span>
+                </h6>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <a href="{{'/home'}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -115,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/kontingen" class="nav-link">
                                 <i class="nav-icon fas fa-gopuram"></i>
                                 <p>
-                                    Kontingen
+                                    Daftar Rayon
                                 </p>
                             </a>
                         </li>
@@ -143,51 +134,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-khanda"></i>
+                    </ul>
+
+                    @endif
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>
+                            User Experient
+                        </span>
+                    </h6>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{'/data'}}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
-                                    Tingkat Sabuk
-                                    <i class="right fas fa-angle-left"></i>
+                                    Data Pribadi
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/tingkat" class="nav-link">
-                                        <i class="fas fa-chevron-circle-right"></i>
-                                        <p> Badge</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-chevron-circle-right"></i>
-                                        <p> Putih</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-chevron-circle-right"></i>
-                                        <p> Kuning</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-chevron-circle-right"></i>
-                                        <p> Merah</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                            <a href="{{'/card'}}" class="nav-link">
+                                <i class="nav-icon fas fa-id-card"></i>
                                 <p>
-                                    Simple Link
-                                    <span class="right badge badge-danger">New</span>
+                                    Kartu Tanda Anggota
                                 </p>
                             </a>
                         </li>
                     </ul>
+
+
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -201,12 +178,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">{{ $title }}</h1>
+                            <h1 class="m-0"></h1>
+                            <h3>{{$title}}</h3>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
+
+
 
             <!-- Main content -->
             <div class="content">
@@ -223,24 +203,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2021 Enka Production.</strong> All rights
             reserved.
         </footer>
     </div>
@@ -248,8 +214,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
 
+    <!-- sweetalert -->
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
     <!-- jQuery -->
     <script src="{{asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.js"></script>
+    <!-- date-picker -->
+    <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\datepicker.js"></script>
+    <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\i18n\datepicker.en.js"></script>
+
     <!-- Bootstrap 4 -->
     <script src="{{asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables  & Plugins -->
@@ -289,6 +268,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
         });
     });
     </script>
+
+    <script>
+    $('.deleted').click(function() {
+        var idmurid = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+
+        Swal.fire({
+            title: 'Apakah Kamu Yakin?',
+            text: "Kamu Yakin Menghapus " + nama + " !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/delete/" + idmurid + ""
+                Swal.fire(
+                    'Deleted!',
+                    'Data Berhasil Dihapus.',
+                    'success',
+                )
+            }
+        })
+    });
+    </script>
+
+
+    @include('sweetalert::alert')
+    @toastr_render
+
 </body>
 
 </html>

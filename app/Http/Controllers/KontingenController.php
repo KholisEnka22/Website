@@ -12,16 +12,16 @@ class KontingenController extends Controller
 {
     public function __construct()
     {
-        $this->Kontingen = new Kontingen();
-        $this->middleware('auth');
+        // $this->Kontingen = new Kontingen();
+        // $this->middleware(['admin', 'auth']);;
     }
     public function index()
     {
         $count = DB::table('murids')->count();
-        $kontingen = Kontingen::all();
         $data = [
-            'title' => 'Daftar Kontingen',
-            'kontingen' => $kontingen,
+            'page' => 'Rayon',
+            'title' => 'Daftar Rayon',
+            'kontingen' => Kontingen::all(),
             'murid' => new Murid()
         ];
 
@@ -30,7 +30,8 @@ class KontingenController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Tambah Kontingen'
+            'page' => 'Kontingen',
+            'title' => 'Tambah Rayon'
         ];
         return view('admin.kontingen.add_konti', $data);
     }
@@ -45,18 +46,24 @@ class KontingenController extends Controller
 
         return redirect('/kontingen')->with('success', 'Data Berhasil Ditambah');
     }
-    // public function detail()
-    // {
-    //     $murid = Murid::get();
-    //     return view('admin.kontingen.dtl_konti', ['murid' => $murid]);
-    // }
-    public function detail($id)
+
+    public function detail($id, $slug)
     {
         $murid = Murid::where('kon_id', $id)->get();
         $data = [
+            'page' => 'Kontingen',
             'title' => 'Data Kontingen',
             'murid' => $murid
         ];
         return view('admin.kontingen.dtl_konti', $data);
+    }
+    public function hapus($id)
+    {
+        $konti = Kontingen::find($id);
+
+        $konti->deleted();
+        Alert::success('Success', 'Kontingen Berhasil Dihapus.');
+        toastr()->success('Kontingen Berhasil Dihapus.');
+        return redirect('/kontingen');
     }
 }

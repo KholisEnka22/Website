@@ -18,26 +18,38 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr align="center">
-                        <th width="30px">No</th>
+                        <th>No</th>
+                        <th>ID Murid</th>
                         <th>Nama Murid</th>
                         <th>Kontingen</th>
                         <th>Alamat</th>
                         <th>TTL</th>
                         <th>Tingkat Sabuk</th>
-                        <th width="100px">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($murid as $no => $m)
                     <tr align="center">
                         <th scope="row">{{++$no}}</th>
-                        <td>{{$m->nama}}</td>
+                        <td>{{$m->mrd_id}}</td>
+                        <td>
+                            <a href="{{route('dtl_murid',[$m->id,Str::slug($m->nama)])}}" style="color: black;">
+                                {{$m->nama}}
+                            </a>
+                        </td>
                         <td>{{$m->kontingen->nama_kon}}</td>
                         <td>{{$m->alamat}}</td>
-                        <td>{{$m->ttl}}</td>
+                        <td>{{$m->tmpt}}, {{$m->tgl}}</td>
                         <td>{{$m->tingkat->nama_tgkt}}</td>
                         <td>
-                            <a href="" class="btn btn-warning">Detail</a>
+                            <a href="#" class="deleted" data-id="{{$m->id}}" data-nama="{{$m->nama}}" class="">
+                                <i class="nav-icon fas fa-trash-alt" style="color: red;"></i>
+                            </a>
+                            |
+                            <a href="{{route('edit.murid',[$m->id,Str::slug($m->nama)])}}" class="">
+                                <i class="nav-icon fas fa-edit"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

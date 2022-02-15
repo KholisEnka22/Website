@@ -25,5 +25,11 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
+    },
+    "dependencies": {
+        "@types/toastr": "^2.1.39",
+        "air-datepicker": "^2.2.3",
+        "sweetalert2": "^11.1.2",
+        "toastr": "^2.1.4"
     }
 }

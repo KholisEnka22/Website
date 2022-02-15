@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Top Navigation</title>
+    <title>Satria Agung | Web</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -26,8 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
             <div class="container">
                 <a href="{{asset('AdminLTE')}}/index3.html" class="navbar-brand">
-                    <img src="{{asset('AdminLTE')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <img src="{{asset('AdminLTE')}}/dist/img/satria0.png" alt="Logo"
+                        class="img-circle elevation-3 img-size-32">
                     <span class="brand-text font-weight-light"><b> Satria Agung</b></span>
                 </a>
 
