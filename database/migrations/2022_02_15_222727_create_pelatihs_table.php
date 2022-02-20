@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMuridsTable extends Migration
+class CreatePelatihsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMuridsTable extends Migration
      */
     public function up()
     {
-        Schema::create('murids', function (Blueprint $table) {
+        Schema::create('pelatihs', function (Blueprint $table) {
             $table->id();
-            $table->integer('kon_id');
             $table->integer('ting_id');
-            $table->integer('thn_id');
             $table->integer('user_id');
-            $table->string('mrd_id');
+            $table->string('plth_id');
             $table->string('nik');
             $table->string('jns_klmin');
             $table->string('email');
@@ -39,6 +37,6 @@ class CreateMuridsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('murids');
+        Schema::dropIfExists('pelatihs');
     }
 }

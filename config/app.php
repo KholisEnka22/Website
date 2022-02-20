@@ -168,6 +168,8 @@ return [
         Brian2694\Toastr\ToastrServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -234,6 +236,8 @@ return [
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Toastr' => \Yoeunes\Toastr\Facades\Toastr::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

@@ -61,30 +61,5 @@ class DatabaseSeeder extends Seeder
                 'nama_tgkt' => 'Biru',
             ]
         );
-        Kontingen::create(
-            [
-                'nama_kon' => 'PAC.Sukorejo',
-            ]
-        );
-        Kontingen::create(
-            [
-                'nama_kon' => 'PAC.Purwosari',
-            ]
-        );
-        Kontingen::create(
-            [
-                'nama_kon' => 'UKM.Yudharta',
-            ]
-        );
-        Kontingen::create(
-            [
-                'nama_kon' => 'PP.Ngalah',
-            ]
-        );
-        Kontingen::create(
-            [
-                'nama_kon' => 'SMK DATA',
-            ]
-        );
     }
 }

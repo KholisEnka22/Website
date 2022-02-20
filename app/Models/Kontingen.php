@@ -8,18 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Kontingen extends Model
 {
     protected $useTimestamps = true;
-    protected $fillable = ['nama_kon'];
+    protected $fillable = ['nama_kon', 'id_plth'];
     protected $primaryKey = 'id';
 
-    // public function getKontingen($id = false)
-    // {
-    //     if ($id == false) {
-    //         return $this->findAll();
-    //     }
-    //     return $this->where(['id' => $id])->first();
-    // }
+    protected $with = 'Pelatih';
+
     public function murid()
     {
         return $this->hasMany(Murid::class);
+    }
+    public function pelatih()
+    {
+        return $this->belongsTo(Pelatih::class, 'id_plth');
     }
 }

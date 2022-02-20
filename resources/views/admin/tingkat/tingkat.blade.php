@@ -47,22 +47,19 @@ break;
                         <th>Nama Murid</th>
                         <th>Kontingen</th>
                         <th>Alamat</th>
-                        <!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach($murids->where('ting_id', $tingkat->id)->get() as $no => $m)
                     <tr align="center">
                         <th scope="row">{{++$no}}</th>
                         <td>{{$m->nama}}</td>
                         <td>{{$m->kontingen->nama_kon}}</td>
                         <td>{{$m->alamat}}</td>
-                        <!-- <td>{{$m->tingkat->nama_tgkt}}</td> -->
-                        <!-- <td>
-                            <a href="" class="btn btn-warning">Detail</a>
-                        </td> -->
                     </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>

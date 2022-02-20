@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tingkat extends Model
+class Tahun extends Model
 {
     protected $useTimestamps = true;
-    protected $fillable = ['nama_tgkt'];
+    protected $fillable = ['tahun_pertama', 'tahun_kedua'];
     protected $primaryKey = 'id';
 
     public function murid()
     {
         return $this->hasMany(Murid::class);
-    }
-    public function pelatih()
-    {
-        return $this->hasMany(Pelatih::class);
     }
 }

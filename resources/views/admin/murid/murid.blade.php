@@ -7,9 +7,14 @@
         <div class="card-header">
             <h3 class="card-title"> {{$title}}</h3>
             <div class="card-tools">
-                <a href="/murid/add_murid" type="button" class="btn btn-outline-light btn-sm"><i
+                <a type="button" class="btn btn-outline-light btn-sm mr-2" data-toggle="modal"
+                    data-target="#exampleModal"><i class="fas fa-plus"></i>
+                    Import XLS
+                </a>
+                <a href="/murid/add_murid" type="button" class="btn btn-outline-light btn-sm mr-2"><i
                         class="fas fa-plus"></i>
-                    add</a>
+                    Add
+                </a>
             </div>
             <!-- /.card-tools -->
         </div>
@@ -21,9 +26,9 @@
                         <th>No</th>
                         <th>ID Murid</th>
                         <th>Nama Murid</th>
-                        <th>Kontingen</th>
+                        <th>Rayon</th>
                         <th>Alamat</th>
-                        <th>TTL</th>
+                        <th>Angkatan</th>
                         <th>Tingkat Sabuk</th>
                         <th>Action</th>
                     </tr>
@@ -40,7 +45,8 @@
                         </td>
                         <td>{{$m->kontingen->nama_kon}}</td>
                         <td>{{$m->alamat}}</td>
-                        <td>{{$m->tmpt}}, {{$m->tgl}}</td>
+                        <td></td>
+
                         <td>{{$m->tingkat->nama_tgkt}}</td>
                         <td>
                             <a href="#" class="deleted" data-id="{{$m->id}}" data-nama="{{$m->nama}}" class="">

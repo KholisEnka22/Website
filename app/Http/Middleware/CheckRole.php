@@ -21,6 +21,6 @@ class CheckRole
             return $next($request);
         }
 
-        return redirect('/');
+        return abort(503, 'Anda Tidak Memiliki Izin Akses');
     }
 }

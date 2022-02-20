@@ -27,39 +27,10 @@
                                 readonly>
                         </div>
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="number" class="form-control @error('nik') is-invalid @enderror"
-                                value="{{ $murid->nik }}" name="nik" placeholder="Nomor Induk Keluarga">
-                            @error('nik')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="nama">Nama Murid</label>
                             <input type="name" class="form-control @error('nama') is-invalid @enderror" id="nama"
                                 name="nama" value="{{$murid->nama}}">
                             @error('nama')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="name" class="form-control @error('email') is-invalid @enderror"
-                                value="{{$murid->email}}" id="email" name="email" placeholder="Email">
-                            @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="tingkat" class="form-label">Jenis Kelamin</label>
-                            <select name="jns_klmin" class="form-control @error('jns_klmin') is-invalid @enderror">
-
-                                <option value="{{ $murid->jns_klmin }}">{{ $murid->jns_klmin }}</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
-
-                            </select>
-                            @error('jns_klmin')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

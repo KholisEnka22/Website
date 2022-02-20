@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kontingen;
 use App\Models\Murid;
-
+use App\Models\Pelatih;
 use DB;
 
 class KontingenController extends Controller
 {
     public function __construct()
     {
-        // $this->Kontingen = new Kontingen();
-        // $this->middleware(['admin', 'auth']);;
     }
     public function index()
     {
@@ -22,28 +20,47 @@ class KontingenController extends Controller
             'page' => 'Rayon',
             'title' => 'Daftar Rayon',
             'kontingen' => Kontingen::all(),
-            'murid' => new Murid()
+            'murid' => new Murid(),
+            'pelatih' => Pelatih::all()
         ];
+        // dd($data);
 
         return view('admin.kontingen.konti', $data, compact('count'));
     }
     public function create()
     {
+        $rayon = Kontingen::all();
         $data = [
-            'page' => 'Kontingen',
-            'title' => 'Tambah Rayon'
+            'page' => 'Rayon',
+            'title' => 'Tambah Rayon',
+            'pelatih' => Pelatih::all(),
+            'kontingen' => $rayon
         ];
         return view('admin.kontingen.add_konti', $data);
     }
     public function store(Request $request)
     {
-        $request->validate(
+        $rules = [
+            'id_plth' => 'required',
+            'nama_kon' => 'required|unique:kontingens',
+        ];
+        $message = [
+            'id_plth.required' => ' Pelatih Tidak Boleh Kosong',
+            'nama_kon.required' => ' Nama Rayon Tidak Boleh Kosong',
+            'nama_kon.unique' => ' Nama Rayon Sudah Terdaftar',
+        ];
+
+        $this->validate($request, $rules, $message);
+
+        // Kontingen::create($request->all());
+        Kontingen::create(
             [
-                'nama_kon' => 'required',
+                'id_plth' => $request->id_plth,
+                'nama_kon' => $request->nama_kon
             ]
         );
-        Kontingen::create($request->all());
 
+        // dd($request->all());
         return redirect('/kontingen')->with('success', 'Data Berhasil Ditambah');
     }
 
@@ -53,6 +70,7 @@ class KontingenController extends Controller
         $data = [
             'page' => 'Kontingen',
             'title' => 'Data Kontingen',
+            'pelatih' => Pelatih::all(),
             'murid' => $murid
         ];
         return view('admin.kontingen.dtl_konti', $data);

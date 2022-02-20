@@ -7,6 +7,7 @@
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $title }}</h3>
+
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -16,7 +17,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form method="POST" action="{{route('murid.simpan')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('pelatih.simpan')}}" enctype="multipart/form-data">
                 <div class="row">
                     {{ csrf_field() }}
                     <div class="card-body">
@@ -30,9 +31,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="nama">Nama Murid</label>
+                            <label for="nama">Nama Lengkap</label>
                             <input type="name" class="form-control @error('nama') is-invalid @enderror"
-                                value="{{old('nama')}}" id="nama" name="nama" placeholder="Nama Murid">
+                                value="{{old('nama')}}" id="nama" name="nama" placeholder="Nama Lengkap">
                             @error('nama')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -84,7 +85,6 @@
                         @error('tgl')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-
                         <div class="form-group">
                             <label for="tingkat" class="form-label">Tingkat</label>
                             <select class="form-control @error('ting_id') is-invalid @enderror"
@@ -95,35 +95,6 @@
                                 @endforeach
                             </select>
                             @error('ting_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="thn_id" class="form-label">Tahun Angkatan</label>
-                            <select class="form-control @error('thn_id') is-invalid @enderror" value="{{old('thn_id')}}"
-                                name="thn_id" id="thn_id">
-                                <option value="">Tahun Angkatan</option>
-                                @foreach($tahun as $thn)
-                                <option value="{{ $thn->id }}">{{ $thn->tahun_pertama }} - {{ $thn->tahun_kedua }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('thn_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="kontingen">Kontingen</label>
-                            <select class="form-control @error('kon_id') is-invalid @enderror" value="{{old('kon_id')}}"
-                                name="kon_id" id="kontingen">
-                                <option value="">Pilih Kontingen</option>
-                                @foreach($kontingen as $kon)
-                                <option value="{{ $kon->id }}">{{ $kon->nama_kon }}</option>
-                                @endforeach
-                            </select>
-                            @error('kon_id')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

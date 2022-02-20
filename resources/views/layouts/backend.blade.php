@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar -->
             <div class="sidebar">
 
-                @if(auth()->user()->role =='admin')
+                @if(auth()->user()->role == 'admin')
 
                 <!-- Sidebar Menu -->
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -111,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/#" class="nav-link">
+                            <a href="/pelatih" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
                                     Daftar Pelatih
@@ -127,6 +127,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{url('ppp')}}" class="nav-link">
+                                <i class="nav-icon fas fa-coins"></i>
+                                <p>
+                                    Pembayaran(PPP)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{url('tingkat')}}" class="nav-link">
                                 <i class="nav-icon fas fa-khanda"></i>
                                 <p>
@@ -134,9 +142,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                    </ul>
 
-                    @endif
+                        <li class="nav-item">
+                            <a href="{{url('tahun')}}" class="nav-link">
+                                <i class="nav-icon fas fa-calendar"></i>
+                                <p>
+                                    Tahun Angkatan
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
 
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -163,7 +178,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     </ul>
+                    @endif
 
+                    @if(auth()->user()->role =='murid')
+                    <!-- User/Murid -->
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>
+                            User Experient
+                        </span>
+                    </h6>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{'/data'}}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Data Pribadi
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{'/card'}}" class="nav-link">
+                                <i class="nav-icon fas fa-id-card"></i>
+                                <p>
+                                    Kartu Tanda Anggota
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
+
+                    <!-- SuperAdmin -->
+                    @if(auth()->user()->role =='pelatih')
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>
+                            Super Admin
+                        </span>
+                    </h6>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/kontingen" class="nav-link">
+                                <i class="nav-icon fas fa-gopuram"></i>
+                                <p>
+                                    Daftar Rayon
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pelatih" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    Daftar Pelatih
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -214,90 +287,163 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
 
-    <!-- sweetalert -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="{{ route('import.murid') }}" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <input type="file" name="file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai</button>
+                        <button type="submit" value="submit" class="btn btn-primary">Import</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
 
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/tahun_simpan">
+                        <div class="row">
+                            {{ csrf_field() }}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="tahun_pertama">Tahun Pertama</label>
+                                    <input type="text" class="form-control @error('tahun_pertama') is-invalid @enderror"
+                                        value="{{old('tahun_pertama')}}" name="tahun_pertama" id="tahun_pertama">
+                                    @error('tahun_pertama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun_kedua">Tahun Kedua</label>
+                                    <input type="text" class="form-control @error('tahun_kedua') is-invalid @enderror"
+                                        value="{{old('tahun_kedua')}}" name="tahun_kedua" id="tahun_kedua">
+                                    @error('tahun_kedua')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- jQuery -->
-    <script src="{{asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.js"></script>
-    <!-- date-picker -->
-    <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\datepicker.js"></script>
-    <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\i18n\datepicker.en.js"></script>
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Bootstrap 4 -->
-    <script src="{{asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="{{asset('AdminLTE')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/jszip/jszip.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('AdminLTE')}}/dist/js/demo.js"></script>
-    <!-- Page specific script -->
-    <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
+        <!-- jQuery -->
+        <script src="{{asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.js"></script>
+        <!-- date-picker -->
+        <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\datepicker.js"></script>
+        <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\i18n\datepicker.en.js"></script>
+
+        <!-- Bootstrap 4 -->
+        <script src="{{asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="{{asset('AdminLTE')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/jszip/jszip.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="{{asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="{{asset('AdminLTE')}}/dist/js/demo.js"></script>
+        <!-- Page specific script -->
+        <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
         });
-    });
-    </script>
+        </script>
 
-    <script>
-    $('.deleted').click(function() {
-        var idmurid = $(this).attr('data-id');
-        var nama = $(this).attr('data-nama');
+        <script>
+        $('.deleted').click(function() {
+            var idmurid = $(this).attr('data-id');
+            var nama = $(this).attr('data-nama');
 
-        Swal.fire({
-            title: 'Apakah Kamu Yakin?',
-            text: "Kamu Yakin Menghapus " + nama + " !",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location = "/delete/" + idmurid + ""
-                Swal.fire(
-                    'Deleted!',
-                    'Data Berhasil Dihapus.',
-                    'success',
-                )
-            }
-        })
-    });
-    </script>
+            Swal.fire({
+                title: 'Apakah Kamu Yakin?',
+                text: "Kamu Yakin Menghapus " + nama + " !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/delete/" + idmurid + ""
+                    Swal.fire(
+                        'Deleted!',
+                        'Data Berhasil Dihapus.',
+                        'success',
+                    )
+                }
+            })
+        });
+        </script>
 
 
-    @include('sweetalert::alert')
-    @toastr_render
+        @include('sweetalert::alert')
+        @toastr_render
 
 </body>
 

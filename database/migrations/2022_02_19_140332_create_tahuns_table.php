@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKontingensTable extends Migration
+class CreateTahunsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateKontingensTable extends Migration
      */
     public function up()
     {
-        Schema::create('kontingens', function (Blueprint $table) {
+        Schema::create('tahuns', function (Blueprint $table) {
             $table->id();
-            $table->string('id_plth');
-            $table->string('nama_kon');
+            $table->string('tahun_pertama');
+            $table->string('tahun_kedua');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateKontingensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kontingens');
+        Schema::dropIfExists('tahuns');
     }
 }
