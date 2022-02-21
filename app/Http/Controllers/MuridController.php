@@ -36,15 +36,9 @@ class MuridController extends Controller
 
     public function muridimportexcel(Request $request)
     {
-        $file = $request->file('file');
-        $namaFile = $file->getClientOriginalName();
-        $file->move('DataMurid', $namaFile);
+        Excel::import(new MuridImport, request()->file('file'));
 
-
-        Excel::import(new MuridImport, public_path('/DataMurid/' . $namaFile));
-
-        // return redirect('/murid');
-        dd($request->all());
+        return redirect('/murid');
     }
 
     public function detail($id, $slug)
@@ -176,10 +170,10 @@ class MuridController extends Controller
             'alamat' => 'required',
             'tmpt' => 'required',
             'tgl' => 'required',
-            'thn_id' => 'required|unique:murids,id',
+            'thn_id' => 'required',
             'ting_id' => 'required',
             'kon_id' => 'required',
-            'foto' => 'mimes:jpeg,png,jpg,gif,svg|max:500'
+            // 'foto' => 'mimes:jpeg,png,jpg,gif,svg|max:500'
         ];
         $message = [
             'nik.required' => ' NIK Tidak Boleh Kosong',

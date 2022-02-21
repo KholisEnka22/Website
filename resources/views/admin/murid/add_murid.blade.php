@@ -105,7 +105,7 @@
                                 name="thn_id" id="thn_id">
                                 <option value="">Tahun Angkatan</option>
                                 @foreach($tahun as $thn)
-                                <option value="{{ $thn->id }}">{{ $thn->tahun_pertama }} - {{ $thn->tahun_kedua }}
+                                <option value="{{ $thn->id }}">{{ tahunBulan($thn->tahun_pertama) }} - {{ tahunBulan($thn->tahun_kedua) }}
                                 </option>
                                 @endforeach
                             </select>

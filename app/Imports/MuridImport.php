@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Models\Murid;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class MuridImport implements ToModel
 {
@@ -25,7 +27,12 @@ class MuridImport implements ToModel
             $mrd_id = 'PNSA' . '-' . date('Y') . $nubRow;
         }
 
-        return new Murid([
+        if ($row[0] == 'No') {
+            return null;
+        }
+
+        return Murid::create([
+            'user_id' => auth()->user()->id,
             'nik' => $row[1],
             'mrd_id' => $mrd_id,
             'nama' => $row[2],
@@ -35,7 +42,9 @@ class MuridImport implements ToModel
             'tmpt' => $row[6],
             'tgl' => $row[7],
             'ting_id' => $row[8],
-            'kon_id' => $row[9]
+            'kon_id' => $row[9],
+            'thn_id' => $row[10],
+            'foto' => 'default.png'
         ]);
     }
 }
