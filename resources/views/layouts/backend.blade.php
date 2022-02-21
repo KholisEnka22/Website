@@ -8,22 +8,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Satria Agung | {{$page}}</title>
+    <title>Satria Agung | {{ $page }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('AdminLTE') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
     <!-- Datepicker -->
-    <link rel="stylesheet" href="{{asset('AdminLTE')}}/dist\air-datepicker\dist\css\datepicker.css">
+    <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist\air-datepicker\dist\css\datepicker.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
@@ -38,7 +39,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -48,20 +50,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="{{asset('AdminLTE')}}/dist/img/avatar2.png" class="img-circle img-sm"
+                            <img src="{{ asset('AdminLTE') }}/dist/img/avatar2.png" class="img-circle img-sm"
                                 alt="Avatar">
                             <span>{{ Auth::user()->name }}</span>
                             <i class="fas fa-angle-down"></i>
                         </a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                             <li class="dropdown-item">
-                                <a href="{{route('account.profil')}}" style="color: black;">
+                                <a href="{{ route('account.profil') }}" style="color: black;">
                                     <i class="far fa-user fa-fw"></i>
                                     <span> My Profile</span>
                                 </a>
                             </li>
                             <li class="dropdown-item">
-                                <a href="{{route('logout')}}" style="color: black;">
+                                <a href="{{ route('logout') }}" style="color: black;">
                                     <i class="fas fa-sign-out-alt fa-fw"></i>
                                     <span> LogOut</span>
                                 </a>
@@ -77,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a class="brand-link">
-                <img src="{{asset('AdminLTE')}}/dist/img/satria0.png" alt="Satria Agung"
+                <img src="{{ asset('AdminLTE') }}/dist/img/satria0.png" alt="Satria Agung"
                     class="img-circle elevation-3 img-size-32">
                 <span class="brand-text font-weight-light">PN Satria Agung</span>
             </a>
@@ -85,102 +87,102 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar -->
             <div class="sidebar">
 
-                @if(auth()->user()->role == 'admin')
-
-                <!-- Sidebar Menu -->
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Administrator</span>
-                </h6>
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="{{'/home'}}" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/kontingen" class="nav-link">
-                                <i class="nav-icon fas fa-gopuram"></i>
-                                <p>
-                                    Daftar Rayon
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pelatih" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    Daftar Pelatih
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('murid')}}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Daftar Murid
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('ppp')}}" class="nav-link">
-                                <i class="nav-icon fas fa-coins"></i>
-                                <p>
-                                    Pembayaran(PPP)
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('tingkat')}}" class="nav-link">
-                                <i class="nav-icon fas fa-khanda"></i>
-                                <p>
-                                    Tingkat Sabuk
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{url('tahun')}}" class="nav-link">
-                                <i class="nav-icon fas fa-calendar"></i>
-                                <p>
-                                    Tahun Angkatan
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-
+                @if (auth()->user()->role == 'admin')
+                    <!-- Sidebar Menu -->
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>
-                            User Experient
-                        </span>
+                        <span>Administrator</span>
                     </h6>
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="{{'/data'}}" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Data Pribadi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{'/card'}}" class="nav-link">
-                                <i class="nav-icon fas fa-id-card"></i>
-                                <p>
-                                    Kartu Tanda Anggota
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    @endif
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <li class="nav-item">
+                                <a href="{{ '/home' }}" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/kontingen" class="nav-link">
+                                    <i class="nav-icon fas fa-gopuram"></i>
+                                    <p>
+                                        Daftar Rayon
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pelatih" class="nav-link">
+                                    <i class="nav-icon fas fa-user-tie"></i>
+                                    <p>
+                                        Daftar Pelatih
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('murid') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Daftar Murid
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('ppp') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-coins"></i>
+                                    <p>
+                                        Pembayaran(PPP)
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('tingkat') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-khanda"></i>
+                                    <p>
+                                        Tingkat Sabuk
+                                    </p>
+                                </a>
+                            </li>
 
-                    @if(auth()->user()->role =='murid')
+                            <li class="nav-item">
+                                <a href="{{ url('tahun') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-calendar"></i>
+                                    <p>
+                                        Tahun Angkatan
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>
+                                User Experient
+                            </span>
+                        </h6>
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <li class="nav-item">
+                                <a href="{{ '/data' }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        Data Pribadi
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ '/card' }}" class="nav-link">
+                                    <i class="nav-icon fas fa-id-card"></i>
+                                    <p>
+                                        Kartu Tanda Anggota
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                @endif
+
+                @if (auth()->user()->role == 'murid')
                     <!-- User/Murid -->
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -191,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{'/data'}}" class="nav-link">
+                            <a href="{{ '/data' }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Data Pribadi
@@ -199,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{'/card'}}" class="nav-link">
+                            <a href="{{ '/card' }}" class="nav-link">
                                 <i class="nav-icon fas fa-id-card"></i>
                                 <p>
                                     Kartu Tanda Anggota
@@ -207,10 +209,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     </ul>
-                    @endif
+                @endif
 
-                    <!-- SuperAdmin -->
-                    @if(auth()->user()->role =='pelatih')
+                <!-- SuperAdmin -->
+                @if (auth()->user()->role == 'pelatih')
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>
@@ -236,7 +238,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     </ul>
-                    @endif
+                @endif
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -252,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0"></h1>
-                            <h3>{{$title}}</h3>
+                            <h3>{{ $title }}</h3>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -287,115 +289,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
 
-                <form action="{{ route('import.murid') }}" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <input type="file" name="file">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Selesai</button>
-                        <button type="submit" value="submit" class="btn btn-primary">Import</button>
-                    </div>
-            </div>
-            </form>
-        </div>
-    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="/tahun_simpan">
-                        <div class="row">
-                            {{ csrf_field() }}
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="tahun_pertama">Tahun Pertama</label>
-                                    <input type="text" class="form-control @error('tahun_pertama') is-invalid @enderror"
-                                        value="{{old('tahun_pertama')}}" name="tahun_pertama" id="tahun_pertama">
-                                    @error('tahun_pertama')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="tahun_kedua">Tahun Kedua</label>
-                                    <input type="text" class="form-control @error('tahun_kedua') is-invalid @enderror"
-                                        value="{{old('tahun_kedua')}}" name="tahun_kedua" id="tahun_kedua">
-                                    @error('tahun_kedua')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                </div>
-                </form>
-            </div>
-        </div>
+    <!-- jQuery -->
+    <script src="{{ asset('AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/jquery-ui/jquery-ui.js"></script>
+    <!-- date-picker -->
+    <script src="{{ asset('AdminLTE') }}/dist\air-datepicker\dist\js\datepicker.js"></script>
+    <script src="{{ asset('AdminLTE') }}/dist\air-datepicker\dist\js\i18n\datepicker.en.js"></script>
 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-        <!-- jQuery -->
-        <script src="{{asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.js"></script>
-        <!-- date-picker -->
-        <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\datepicker.js"></script>
-        <script src="{{asset('AdminLTE')}}/dist\air-datepicker\dist\js\i18n\datepicker.en.js"></script>
-
-        <!-- Bootstrap 4 -->
-        <script src="{{asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- DataTables  & Plugins -->
-        <script src="{{asset('AdminLTE')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/jszip/jszip.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/pdfmake/pdfmake.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/pdfmake/vfs_fonts.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-        <script src="{{asset('AdminLTE')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="{{asset('AdminLTE')}}/dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="{{asset('AdminLTE')}}/dist/js/demo.js"></script>
-        <!-- Page specific script -->
-        <script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('AdminLTE') }}/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('AdminLTE') }}/dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
@@ -413,9 +340,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
             });
         });
-        </script>
+    </script>
 
-        <script>
+    <script>
         $('.deleted').click(function() {
             var idmurid = $(this).attr('data-id');
             var nama = $(this).attr('data-nama');
@@ -439,11 +366,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 }
             })
         });
-        </script>
+    </script>
 
 
-        @include('sweetalert::alert')
-        @toastr_render
+    @include('sweetalert::alert')
+    @toastr_render
 
 </body>
 

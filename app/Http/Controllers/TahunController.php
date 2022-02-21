@@ -6,14 +6,13 @@ use App\Models\Tahun;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Murid;
-use DB;
-
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class TahunController extends Controller
 {
     public function index()
     {
-        $count = DB::table('murids')->count();
+        $count = FacadesDB::table('murids')->count();
         $data = [
             'page' => 'Angkatan',
             'title' => 'Tahun Angkatan',
@@ -22,6 +21,7 @@ class TahunController extends Controller
         ];
         return view('admin.tahun.tahun', $data);
     }
+
     public function create()
     {
         $tahun = Tahun::all();
@@ -31,8 +31,11 @@ class TahunController extends Controller
         ];
         return view('admin.tahun.add_tahun', $data);
     }
+
     public function store(Request $request)
     {
+        // return $request->all();
+
         $rules = [
             'tahun_pertama' => 'required',
             'tahun_kedua' => 'required'

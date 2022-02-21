@@ -1,0 +1,55 @@
+<?php
+
+if (!function_exists('tanggal')) {
+    function tahunBulan($tgl)
+    {
+        $ex = explode(' ', $tgl);
+        $bulan = bulan(substr($ex[0], 5, 2));
+        $tahun = substr($ex[0], 0, 4);
+        return $bulan . ' ' . $tahun;
+    }
+}
+
+if (!function_exists('bulan')) {
+    function bulan($bln)
+    {
+        switch ($bln) {
+            case 1:
+                return "Januari";
+                break;
+            case 2:
+                return "Februari";
+                break;
+            case 3:
+                return "Maret";
+                break;
+            case 4:
+                return "April";
+                break;
+            case 5:
+                return "Mei";
+                break;
+            case 6:
+                return "Juni";
+                break;
+            case 7:
+                return "Juli";
+                break;
+            case 8:
+                return "Agustus";
+                break;
+            case 9:
+                return "September";
+                break;
+            case 10:
+                return "Oktober";
+                break;
+            case 11:
+                return "November";
+                break;
+            case 12:
+                return "Desember";
+                break;
+        }
+    }
+}
