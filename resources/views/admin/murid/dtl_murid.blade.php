@@ -24,6 +24,9 @@
                     <b>TTL</b> <a class="float-right">{{$murid->tmpt}}, {{$murid->tgl}}</a>
                 </li>
                 <li class="list-group-item">
+                    <b>Gender</b> <a class="float-right">{{$murid->jns_klmin}}</a>
+                </li>
+                <li class="list-group-item">
                     <b>Alamat</b> <a class="float-right">{{$murid->alamat}}</a>
                 </li>
             </ul>

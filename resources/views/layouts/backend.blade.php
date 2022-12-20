@@ -39,8 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
 
@@ -88,101 +87,100 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="sidebar">
 
                 @if (auth()->user()->role == 'admin')
-                    <!-- Sidebar Menu -->
+                <!-- Sidebar Menu -->
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Administrator</span>
+                </h6>
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ '/home' }}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kontingen" class="nav-link">
+                                <i class="nav-icon fas fa-gopuram"></i>
+                                <p>
+                                    Daftar Rayon
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pelatih" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    Daftar Pelatih
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('murid') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Daftar Murid
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('ppp') }}" class="nav-link">
+                                <i class="nav-icon fas fa-coins"></i>
+                                <p>
+                                    Pembayaran(PPP)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('tingkat') }}" class="nav-link">
+                                <i class="nav-icon fas fa-khanda"></i>
+                                <p>
+                                    Tingkat Sabuk
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('tahun') }}" class="nav-link">
+                                <i class="nav-icon fas fa-calendar"></i>
+                                <p>
+                                    Tahun Angkatan
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Administrator</span>
+                        <span>
+                            User Experient
+                        </span>
                     </h6>
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <li class="nav-item">
-                                <a href="{{ '/home' }}" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Dashboard
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/kontingen" class="nav-link">
-                                    <i class="nav-icon fas fa-gopuram"></i>
-                                    <p>
-                                        Daftar Rayon
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/pelatih" class="nav-link">
-                                    <i class="nav-icon fas fa-user-tie"></i>
-                                    <p>
-                                        Daftar Pelatih
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('murid') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>
-                                        Daftar Murid
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('ppp') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-coins"></i>
-                                    <p>
-                                        Pembayaran(PPP)
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('tingkat') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-khanda"></i>
-                                    <p>
-                                        Tingkat Sabuk
-                                    </p>
-                                </a>
-                            </li>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ '/data' }}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Data Pribadi
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ '/card' }}" class="nav-link">
+                                <i class="nav-icon fas fa-id-card"></i>
+                                <p>
+                                    Kartu Tanda Anggota
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
 
-                            <li class="nav-item">
-                                <a href="{{ url('tahun') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-calendar"></i>
-                                    <p>
-                                        Tahun Angkatan
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <h6
-                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>
-                                User Experient
-                            </span>
-                        </h6>
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <li class="nav-item">
-                                <a href="{{ '/data' }}" class="nav-link">
-                                    <i class="nav-icon fas fa-user"></i>
-                                    <p>
-                                        Data Pribadi
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ '/card' }}" class="nav-link">
-                                    <i class="nav-icon fas fa-id-card"></i>
-                                    <p>
-                                        Kartu Tanda Anggota
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                @endif
-
-                @if (auth()->user()->role == 'murid')
+                    @if (auth()->user()->role == 'murid')
                     <!-- User/Murid -->
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -209,10 +207,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     </ul>
-                @endif
+                    @endif
 
-                <!-- SuperAdmin -->
-                @if (auth()->user()->role == 'pelatih')
+                    <!-- SuperAdmin -->
+                    @if (auth()->user()->role == 'pelatih')
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>
@@ -238,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                     </ul>
-                @endif
+                    @endif
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -323,55 +321,71 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('AdminLTE') }}/dist/js/demo.js"></script>
     <!-- Page specific script -->
     <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
         });
+        $("#example3").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+        $('#example4').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
     </script>
 
-    <script>
-        $('.deleted').click(function() {
-            var idmurid = $(this).attr('data-id');
-            var nama = $(this).attr('data-nama');
 
-            Swal.fire({
-                title: 'Apakah Kamu Yakin?',
-                text: "Kamu Yakin Menghapus " + nama + " !",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "/delete/" + idmurid + ""
-                    Swal.fire(
-                        'Deleted!',
-                        'Data Berhasil Dihapus.',
-                        'success',
-                    )
-                }
-            })
-        });
-    </script>
+    <!-- <script>
+    $('.deleted').click(function() {
+        var idmurid = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+
+        Swal.fire({
+            title: 'Apakah Kamu Yakin?',
+            text: "Kamu Yakin Menghapus " + nama + " !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/delete/" + idmurid + ""
+                Swal.fire(
+                    'Deleted!',
+                    'Data Berhasil Dihapus.',
+                    'success',
+                )
+            }
+        })
+    });
+    </script> -->
 
 
     @include('sweetalert::alert')
     @toastr_render
-
+    @yield('footer')
 </body>
 
 </html>

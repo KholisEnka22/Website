@@ -36,9 +36,13 @@ class MuridController extends Controller
 
     public function muridimportexcel(Request $request)
     {
+
+
         Excel::import(new MuridImport, request()->file('file'));
 
+        Alert::success('Success', 'Data Berhasil Di Tambah :)');
         return redirect('/murid');
+        // return ($request->all());
     }
 
     public function detail($id, $slug)
@@ -68,7 +72,7 @@ class MuridController extends Controller
             'nik' => 'required',
             'nama' => 'required|unique:murids,id',
             'email' => 'required|unique:murids|email',
-            'thn_id' => 'required|unique:murids,id',
+            'thn_id' => 'required',
             'jns_klmin' => 'required',
             'alamat' => 'required',
             'tmpt' => 'required',
@@ -84,7 +88,6 @@ class MuridController extends Controller
             'email.required' => ' Email Tidak Boleh Kosong',
             'email.unique' => ' Email Sudah Terdaftar',
             'thn_id.required' => ' Tahun Ajaran Tidak Boleh Kosong',
-            'thn_id.unique' => ' Murid Sudah Terdaftar Ditahun Ini',
             'jns_klmin.required' => ' Jenis Kelamin Tidak Boleh Kosong',
             'alamat.required' => ' Alamat Tidak Boleh Kosong',
             'tmpt.required' => ' Kota Kelahiran Tidak Boleh Kosong',
@@ -103,8 +106,15 @@ class MuridController extends Controller
         $request->foto = $request->file('foto')->getClientOriginalName();
 
         //Membuat IDMurid Otomatis
-        $murid = Murid::where('id')->get();
-        $nubRow = count($murid) + 1;
+        $murid = Murid::get()->last();
+        if ($murid == null) {
+            $nubRow = 1;
+        } else {
+            $id = substr($murid->mrd_id, 9, 3);
+            $id = (int) $id;
+            $nubRow = $id + 1;
+        }
+
         if ($nubRow < 10) {
             $mrd_id = 'PNSA' . '-' . date('Y') . "00" . $nubRow;
         } elseif ($nubRow >= 10 && $nubRow <= 99) {
@@ -112,6 +122,7 @@ class MuridController extends Controller
         } elseif ($nubRow <= 100) {
             $mrd_id = 'PNSA' . '-' . date('Y') . $nubRow;
         }
+
 
         //Import ke table User
         $user = new User;
@@ -173,7 +184,7 @@ class MuridController extends Controller
             'thn_id' => 'required',
             'ting_id' => 'required',
             'kon_id' => 'required',
-            // 'foto' => 'mimes:jpeg,png,jpg,gif,svg|max:500'
+            'foto' => 'mimes:jpeg,png,jpg,gif,svg|max:500'
         ];
         $message = [
             'nik.required' => ' NIK Tidak Boleh Kosong',

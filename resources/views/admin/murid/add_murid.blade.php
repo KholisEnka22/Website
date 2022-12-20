@@ -51,8 +51,8 @@
                             <label for="tingkat" class="form-label">Jenis Kelamin</label>
                             <select name="jns_klmin" class="form-control @error('jns_klmin') is-invalid @enderror">
                                 <option>Jenis Kelamin</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
                             </select>
                             @error('jns_klmin')
                             <div class="invalid-feedback">{{ $message }}</div>

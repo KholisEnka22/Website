@@ -3,9 +3,13 @@
 namespace App\Imports;
 
 use App\Models\Murid;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Illuminate\Support\Str;
+
 
 class MuridImport implements ToModel
 {
@@ -17,8 +21,15 @@ class MuridImport implements ToModel
     public function model(array $row)
     {
         //Membuat IDMurid Otomatis
-        $murid = Murid::where('id')->get();
-        $nubRow = count($murid) + 1;
+        $murid = Murid::get()->last();
+        if ($murid == null) {
+            $nubRow = 1;
+        } else {
+            $id = substr($murid->mrd_id, 9, 3);
+            $id = (int) $id;
+            $nubRow = $id + 1;
+        }
+
         if ($nubRow < 10) {
             $mrd_id = 'PNSA' . '-' . date('Y') . "00" . $nubRow;
         } elseif ($nubRow >= 10 && $nubRow <= 99) {
@@ -27,12 +38,21 @@ class MuridImport implements ToModel
             $mrd_id = 'PNSA' . '-' . date('Y') . $nubRow;
         }
 
+        //Import ke table User
+        $user = User::get()->last();
+        $user->role = 'murid';
+        $user->name = $murid->nama;
+        $user->email = $murid->email;
+        $user->password = bcrypt ($murid->tgl);
+        $user->remember_token = str::random(50);
+        $user->save();
+
         if ($row[0] == 'No') {
             return null;
         }
-
+            print_r($row);
         return Murid::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => $user->id,
             'nik' => $row[1],
             'mrd_id' => $mrd_id,
             'nama' => $row[2],

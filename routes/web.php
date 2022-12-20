@@ -59,8 +59,11 @@ Route::group(
         Route::post('/import_murid', [MuridController::class, 'muridimportexcel'])->name('import.murid');
 
         Route::get('/ppp', [PembayaranController::class, 'index'])->name('ppp');
-        Route::get('/ppp/add_ppp', [PembayaranController::class, 'create'])->name('add.ppp');
-        Route::post('/ppp/simpan', [PembayaranController::class, 'store'])->name('ppp.simpan');
+        Route::get('/ppp/dtl_ppp/{id}/{slug}', [PembayaranController::class, 'detail'])->name('dtl_ppp');
+        Route::post('/ppp_simpan', [PembayaranController::class, 'store'])->name('ppp.simpan');
+        Route::get('/edit_pembayaran/{id}/{slug}', [PembayaranController::class, 'edit'])->name('edit.pembayaran');
+        Route::post('/update_pembayaran/{id}', [PembayaranController::class, 'update'])->name('update');
+        Route::get('/deleted/{id}', [PembayaranController::class, 'hapus'])->name('pembayaran.hapus');
 
         Route::get('/pelatih', [PelatihController::class, 'index'])->name('pelatih');
         Route::get('/add_pelatih', [PelatihController::class, 'create'])->name('add.pelatih');
@@ -70,7 +73,6 @@ Route::group(
         Route::get('/tingkat/{id}', [TingkatController::class, 'show'])->name('dtl.tingkat');
 
         Route::get('/tahun', [TahunController::class, 'index'])->name('tahun');
-        Route::get('/add_tahun', [TahunController::class, 'create'])->name('add.tahun');
         Route::post('/tahun_simpan', [TahunController::class, 'store'])->name('tahun.simpan');
     }
 );

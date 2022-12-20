@@ -55,11 +55,11 @@
                                 <select name="jns_klmin" class="form-control @error('jns_klmin') is-invalid @enderror">
 
                                     <option value="{{ $murid->jns_klmin }}">
-                                        {{ $murid->jns_klmin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</option>
-                                    @if ($murid->jns_klmin == 'L')
-                                        <option value="P">Perempuan</option>
+                                        {{ $murid->jns_klmin == 'Laki-laki' ? 'Laki-Laki' : 'Perempuan' }}</option>
+                                    @if ($murid->jns_klmin == 'Laki-laki')
+                                        <option value="Perempuan">Perempuan</option>
                                     @else
-                                        <option value="L">Laki-Laki</option>
+                                        <option value="Laki-laki">Laki-Laki</option>
                                     @endif
 
                                 </select>

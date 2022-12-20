@@ -29,7 +29,7 @@ class TahunController extends Controller
             'page' => 'Tambah Tahun',
             'title' => 'Tambah Tahun Angkatan'
         ];
-        return view('admin.tahun.add_tahun', $data);
+        return view('admin.tahun', $data);
     }
 
     public function store(Request $request)

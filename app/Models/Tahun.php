@@ -15,4 +15,8 @@ class Tahun extends Model
     {
         return $this->hasMany(Murid::class);
     }
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }

@@ -2,78 +2,112 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelatih;
-use App\Models\Tingkat;
-use App\Models\Kontingen;
 use App\Models\Pembayaran;
-use App\Models\User;
+use App\Models\Tahun;
+use App\Models\Murid;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PembayaranController extends Controller
 {
     public function index()
     {
-
+        // $pembayaran = Pembayaran::find('id');
         $data = [
-            'page' => 'PPP',
-            'title' => 'PPP (Pembayaran Padepokan Pusat)',
-            'pembayaran' => Pembayaran::latest()->get()
+            'page' => 'Data Pembayaran',
+            'title' => 'Data Pembayaran',
+            'pembayaran' => Pembayaran::latest()->get(),
+            'tahun' => Tahun::all()
         ];
         return view('admin.pembayaran.ppp', $data);
         // dd($data);
     }
+    public function detail($id, $slug)
+    {
+        $data = [
+            'page' => 'Detail Pembayaran',
+            'title' => 'Detail Pembayaran',
+            'murid' => Murid::all(),
+            'pembayaran' => Pembayaran::find($id)
+        ];
+        return view('admin.pembayaran.dtl_ppp', $data);
+    }
     public function create()
     {
-        $ppp = Pembayaran::all();
         $data = [
-            'page' => 'Tambah Rayon',
-            'title' => 'Rayon'
+            'page' => 'Tambah Pembayaran',
+            'title' => 'Tambah Pembayaran',
+            'pembayaran' => Pembayaran::all(),
+            'tahun' => Tahun::all()
         ];
-        return view('admin.pembayaran.add_ppp', $data);
+        return view('admin.pembayaran', $data);
     }
     public function store(Request $request)
     {
         $rules = [
-            'nama_r' => 'required',
-            'nama_p' => 'required',
-            'no_tlp' => 'required',
-            'jumlah_a' => 'required',
-            'thn_p' => 'required',
-            'bln_1' => 'required',
-            'bln_2' => 'required',
-            'status' => 'required'
+            'nama' => 'required',
+            'thn_id' => 'required'
         ];
         $message = [
-            'nama_r' => 'Nama Rayon Tidak Boleh Kosong',
-            'nama_p' => 'Nama Pelatih Tidak Boleh Kosong',
-            'no_tlp' => 'Nomor Tlp Pelatih Tidak Boleh Kosong',
-            'jumlah_a' => 'Jumlah Anggota Tidak Boleh Kosong',
-            'thn_p' => 'Tahun Pembayaran Tidak Boleh Kosong',
-            'bln_1' => 'Cicilan Bulan pertama Tidak Boleh Kosong',
-            'bln_2' => 'Cicilan Bulan ke-2 Tidak Boleh Kosong',
-            'status' => 'Status Tidak Boleh Kosong'
+            'nama.required' => 'Nama Pembayaran Tidak Boleh Kosong',
+            'thn_id.required' => 'Tahun Tidak Boleh Kosong',
         ];
-        $this->validate($request, $rules, $message);
-
-
+        $this->validate($request, $rules);
         Pembayaran::create(
             [
-                'nama_r' => $request->nama_r,
-                'nama_p' => $request->nama_p,
-                'no_tlp' => $request->no_tlp,
-                'jumlah_a' => $request->jumlah_a,
-                'thn_p' => $request->thn_p,
-                'bln_1' => $request->bln_1,
-                'bln_2' => $request->bln_2,
-                'status' => $request->status
+                'nama' => $request->nama,
+                'thn_id' => $request->thn_id
             ]
         );
-
+        // dd($request);
         Alert::success('Success', 'Data Berhasil Di Tambah :)');
         toastr()->success('Data Berhasil Ditambah ');
         return redirect('/ppp');
-        // dd($request->all());
+    }
+    public function edit($id, $slug)
+    {
+
+        $data = [
+            'page' => 'Edit Pembayaran',
+            'title' => 'Edit Pembayaran',
+            'pembayaran' => Pembayaran::find($id),
+            'tahun' => Tahun::all()
+        ];
+        return view('admin.pembayaran.edit_ppp', $data);
+    }
+    public function update(Request $request, $id)
+    {
+        $rules = [
+            'nama' => 'required',
+            'thn_id' => 'required'
+        ];
+        $message = [
+            'nama.required' => 'Nama Pembayaran Tidak Boleh Kosong',
+            'thn_id.required' => 'Tahun Tidak Boleh Kosong',
+        ];
+        $this->validate($request, $rules, $message);
+
+        $pembayaran = Pembayaran::find($id);
+        $pembayaran->nama = $request->input('nama');
+        $pembayaran->thn_id = $request->input('thn_id');
+        $pembayaran->save();
+
+        $pembayaran->update();
+        Alert::success('Success', 'Data Berhasil Di Edit. :)');
+        toastr()->success('Data Berhasil Di Edit.');
+        return redirect('/ppp');
+        // return $pembayaran;
+    }
+    public function hapus($id)
+    {
+        $pembayaran = Pembayaran::find($id);
+
+        $pembayaran->delete();
+
+        Alert::success('Success', 'Data Berhasil Dihapus.');
+        toastr()->success('Data Berhasil Dihapus.');
+        return redirect('/ppp');
+        // $pembayaran = Pembayaran::where('id', $id)->delete();
+        // return $pembayaran;
     }
 }
